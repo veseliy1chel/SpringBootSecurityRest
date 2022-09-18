@@ -17,7 +17,7 @@ public class PersonDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-      
+
         // ROLE_ADMIN, ROLE_USER - это роли
         return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));
     }
