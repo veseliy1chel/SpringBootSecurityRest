@@ -1,6 +1,7 @@
 package com.study.springbootsecurityrest.util;
 
 import com.study.springbootsecurityrest.models.Person;
+import com.study.springbootsecurityrest.services.PersonDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
