@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Person")
+@Table(name = "users_db")
 public class Person {
     @Id
     @Column(name = "id")
