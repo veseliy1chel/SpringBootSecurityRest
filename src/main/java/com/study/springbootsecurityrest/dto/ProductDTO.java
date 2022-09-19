@@ -1,14 +1,21 @@
 package com.study.springbootsecurityrest.dto;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class ProductDTO {
-    @NotEmpty(message = "Name must be not null")
+    @Size(min = 5,message = "Size must be more than 5 symbols")
     private String name;
 
+    @Size(min = 10,message = "Description must be more than 10 symbols")
     private String description;
 
+    @Min(value = 0,message = "only positive num")
     private int price;
+
+
 
     public String getName() {
         return name;

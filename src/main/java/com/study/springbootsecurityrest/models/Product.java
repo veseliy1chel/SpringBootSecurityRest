@@ -1,7 +1,9 @@
 package com.study.springbootsecurityrest.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -13,17 +15,18 @@ public class Product {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        @NotEmpty(message = "Имя не должно быть пустым")
-        @Size(min = 5, message = "Имя должно быть от 5 символов длиной")
+        @NotEmpty(message = "Name must be not empty")
+        @Size(min = 5, message = "Name must be more than 5 symbols")
         @Column(name = "name")
         private String name;
 
         @NotEmpty(message = "Address must be not null")
-        @Size(min = 10,message = "Size must be more than 20 symbols")
+        @Size(min = 10,message = "Description must be more than 10 symbols")
         @Column(name = "description")
         private String description;
 
 
+        @Min(value = 0,message = "only positive num")
         @Column(name = "price")
         private int price;
 

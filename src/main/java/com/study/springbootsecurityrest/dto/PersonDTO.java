@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 public class PersonDTO {
     @NotEmpty(message = "Username mustn`t be null")
+
     private String username;
     private String password;
 
