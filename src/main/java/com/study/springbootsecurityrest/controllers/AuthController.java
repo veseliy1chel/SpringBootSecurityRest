@@ -7,17 +7,13 @@ import com.study.springbootsecurityrest.security.JWTUtil;
 import com.study.springbootsecurityrest.services.RegistrationService;
 import com.study.springbootsecurityrest.util.PersonValidator;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.Errors;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -46,7 +42,8 @@ public class AuthController {
 
     }
 
-    @PostMapping("/registration")
+
+   @PostMapping("/registration")
     public Map<String, String> performRegistration(@RequestBody @Valid PersonDTO personDTO,
                                                    BindingResult bindingResult) {
         Person person = convertToPerson(personDTO);
