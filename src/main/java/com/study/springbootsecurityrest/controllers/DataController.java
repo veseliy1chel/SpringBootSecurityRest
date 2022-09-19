@@ -1,46 +1,48 @@
 package com.study.springbootsecurityrest.controllers;
 
-import com.study.springbootsecurityrest.dto.AuthenticationDTO;
-import com.study.springbootsecurityrest.dto.PersonDTO;
+import com.study.springbootsecurityrest.dto.ProductDTO;
 import com.study.springbootsecurityrest.dto.ShopDTO;
-import com.study.springbootsecurityrest.models.Person;
+import com.study.springbootsecurityrest.models.Product;
 import com.study.springbootsecurityrest.models.Shop;
-import com.study.springbootsecurityrest.security.PersonDetails;
-import com.study.springbootsecurityrest.services.AddInfoFromUserService;
 import com.study.springbootsecurityrest.services.AdminService;
+import com.study.springbootsecurityrest.services.ProductService;
+import com.study.springbootsecurityrest.services.ShopService;
+import com.study.springbootsecurityrest.util.ProductValidator;
 import com.study.springbootsecurityrest.util.ShopValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+
+import javax.naming.NameNotFoundException;
 import javax.validation.Valid;
+
 import java.util.Map;
 @Controller
 public class DataController {
         private final ModelMapper modelMapper;
         private final AdminService adminService;
-        private final AddInfoFromUserService infoFromUserService;
+        private final ShopService shopService;
+        private final ProductService productService;
 
         private final ShopValidator shopValidator;
 
+        private final ProductValidator productValidator;
+
         @Autowired
-        public DataController(AdminService adminService,AddInfoFromUserService infoFromUserService,ShopValidator shopValidator,ModelMapper modelMapper) {
+        public DataController(AdminService adminService,ProductService productService
+                ,ShopService shopService,ProductValidator productValidator,ShopValidator shopValidator,ModelMapper modelMapper) {
             this.adminService = adminService;
-            this.infoFromUserService=infoFromUserService;
+            this.productService=productService;
             this.modelMapper=modelMapper;
             this.shopValidator=shopValidator;
+            this.productValidator=productValidator;
+            this.shopService= shopService;
         }
 
 
@@ -58,10 +60,30 @@ public class DataController {
                 return Map.of("message", "Ошибка!");
             }
 
-            infoFromUserService.registerShop(shop);
+            shopService.register(shop);
             return Map.of("message","успех!");
 
         }
+    @ResponseBody
+    @RequestMapping(value = "/shop/{shop_id}/product", method = RequestMethod.POST)
+    public Map<String, String> performProduct(@RequestBody @Valid ProductDTO productDTO, @PathVariable(value = "shop_id") Long shop_id, BindingResult bindingResult) {
+        adminService.doAdminStuff();
+        Product product = convertToProduct(productDTO);
+
+        try {
+            product.setShop(shopService.loadShopById(shop_id).getShop());
+        } catch (NameNotFoundException e) {
+            return Map.of("message","shop have wrong id");
+        }
+        productValidator.validate(product, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return Map.of("message", "Ошибка!");
+        }
+        productService.register(product);
+        return Map.of("message","успех!");
+
+    }
 
         @Bean
         public ViewResolver getViewResolver() {
@@ -72,6 +94,9 @@ public class DataController {
         }
     public Shop convertToShop(ShopDTO shopDTO) {
         return this.modelMapper.map(shopDTO, Shop.class);
+    }
+    public Product convertToProduct(ProductDTO productDTO) {
+        return this.modelMapper.map(productDTO, Product.class);
     }
 
 }
