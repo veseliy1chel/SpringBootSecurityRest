@@ -8,5 +8,6 @@ public class ShopDetails {
     public ShopDetails(Shop shop){this.shop=shop;}
 
     public int getId(){return shop.getId();}
+    public Shop getShop(){return shop;}
 
 }

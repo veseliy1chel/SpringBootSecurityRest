@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "shop_db")
+@Table(name = "product_db")
 public class Product {
         @Id
         @Column(name = "id")
@@ -23,7 +23,7 @@ public class Product {
         @Column(name = "description")
         private String description;
 
-        @NotEmpty(message = "price must be not null")
+
         @Column(name = "price")
         private int price;
 

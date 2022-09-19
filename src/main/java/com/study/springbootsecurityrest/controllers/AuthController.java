@@ -7,6 +7,7 @@ import com.study.springbootsecurityrest.security.JWTUtil;
 import com.study.springbootsecurityrest.services.RegistrationService;
 import com.study.springbootsecurityrest.util.PersonValidator;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.Errors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,6 +41,7 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
         this.modelMapper = modelMapper;
         this.authenticationManager = authenticationManager;
+
 
 
     }

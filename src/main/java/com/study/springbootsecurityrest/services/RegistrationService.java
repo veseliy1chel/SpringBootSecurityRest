@@ -22,13 +22,14 @@ public class RegistrationService {
     @Transactional
     public void register(Person person) {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
+        if(person.getUsername()=="admin"){person.setRole("ROLE_ADMIN");}
         person.setRole("ROLE_USER");
         peopleRepository.save(person);
     }
     @Transactional
     public void registerAdmin(Person person) {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
-        person.setRole("ADMIN");
+        person.setRole("ROLE_ADMIN");
         peopleRepository.save(person);
     }
 }
