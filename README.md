@@ -12,6 +12,7 @@
 * role admin can add only from method `registerAdmin()`,done so for safety reasons,but I can change DTO for add role from request
 * App haven't gui,all tests in `postman`
 * APP DOESN'T WORKING WITHOUT DOCKER (db in docker)
+* Screenshots of testing in postman added to resources/Screen
 
 ## Technologies
 Project is created with:
