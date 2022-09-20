@@ -1,25 +1,28 @@
-#        Тестове завдання
-        згідно з тз:
-    [x] Створити restfull додаток з авторизацією і регістрацією
-    Додаток створений на основі Spring.Security та jwt токенів,
-    після реєстрації (за замовчуванням користувачу
-    з юзером адмін присвоюється роль адміна)
-    Всі паролі шифруються і потім зберігаються в бд
-    пост запити реєстрації та авторизації повертають токени для 
-    ідентифікації користувача,є валідація на унікальність юзернейму
-    [x] 2 типи користувачів
-    є адмін і юзер,для них два різні методи реєстрації.
-    За необхідністю в PersonDTO можна додати поле ролі, 
-    і отримувати її с запиту,їх розділено з погляду безпеки
-    [x] Створити моделі
-    моделі були створені за допомогою анотацій @Entity згідно з тз
-        Вибрано бд postgresql
-    [x] Всі моделі товарів і продуктів перевіряються валідатором,та
-        анотаціями в ДТО та моделях
-    [x] Валідація організована за допомогою наслідування классу
-    Валідатор,та перевизначення методів
-    [x] Створено докер файли бд та додатку,об'єднано в docker-compose файлі
-    [x] Скриншоти наведені в папці ресурсів з назвою Screen
-        
-    В заключній частині можна сказати що все виконано згідно тз
-    протестовано в постмені та всі частини тз виконані
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
+## General info
+This is simple spring-boot RESTfull app with authorization and save session by jwt tokens.
+Testing via postman
+
+
+## Technologies
+Project is created with:
+* Java: 11.0
+* Spring-Boot version: 2.51
+* auth0 version: 4.0.0
+* image postgres for postgresql db: latest
+
+## Setup
+To run this project(WARNING db up in docker-compose,so without docker app doesn`t work.
+For update jar file of app we have instruction)
+ ### install it locally using cmd:
+1. Go to folder Docker: cd \src\main\Docker
+2. docker build -t security-rest-docker.jar .
+3. docker compose up
+4. If want to stop,using: docker compose down
+ ### for update jar file of app:
+1. cmd in folder SpringBootSecurityRest: ./mvnw clear install -DskipTests
+2. in folder target copy  SpringSecurityApp-0.0.1-SNAPSHOT.jar and paste with overwriting in Docker folder
