@@ -10,7 +10,7 @@
 * In first registartion use username `admin` for default creating `admin_role`(we have 2 methods for registration user,or admin)
 * All table in db is empty,because we up db in docker,so table init when it start`s
 * role admin can add only from method `registerAdmin()`,done so for safety reasons,but I can change DTO for add role from request
-* App haven't gui,all tests in `postman`,if gui is needed,it can add later
+* App haven't gui,all tests in `postman`
 * APP DOESN'T WORKING WITHOUT DOCKER (db in docker)
 
 ## Technologies
