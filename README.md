@@ -20,7 +20,7 @@
     Валідатор,та перевизначення методів
     [x] Створено докер файли бд та додатку,об'єднано в docker-compose файлі
      Для запуску перейдіть в папку Docker
-     docker build security-rest-app.jar .
+     docker build security-rest-docker.jar .
      docker compose up
     [x] Скриншоти наведені в папці ресурсів з назвою Screen
         
