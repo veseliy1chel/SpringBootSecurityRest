@@ -1,3 +1,4 @@
+
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
@@ -26,3 +27,4 @@ For update jar file of app we have instruction)
  ### for update jar file of app:
 1. cmd in folder SpringBootSecurityRest: ./mvnw clear install -DskipTests
 2. in folder target copy  SpringSecurityApp-0.0.1-SNAPSHOT.jar and paste with overwriting in Docker folder
+
