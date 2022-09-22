@@ -29,18 +29,8 @@ public class ShopValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Shop shop = (Shop) o;
 
-
         try {
-            if(shop.getName().length()<8){
-                throw (new SizeLimitExceededException("name was less of 8"));
-            }
-            if(shop.getAddress().length()<20){throw (new SizeLimitExceededException("address was less of 20") );}
-
             shopService.loadShopByName(shop.getName());
-        } catch (SizeLimitExceededException ignored) {
-            errors.rejectValue("shop", "", "Shop have bad data");
-
-
         } catch (NameNotFoundException e) {
             return;
         }
