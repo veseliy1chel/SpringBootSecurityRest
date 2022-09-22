@@ -3,7 +3,6 @@ package com.study.springbootsecurityrest.util;
 import com.study.springbootsecurityrest.models.Product;
 import com.study.springbootsecurityrest.models.Shop;
 import com.study.springbootsecurityrest.services.ProductService;
-import com.study.springbootsecurityrest.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

@@ -11,19 +11,12 @@ import com.study.springbootsecurityrest.util.ProductValidator;
 import com.study.springbootsecurityrest.util.ShopValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
-
 import javax.naming.NameNotFoundException;
 import javax.validation.Valid;
-
 import java.util.Map;
-@Controller
+@RestController
 public class DataController {
         private final ModelMapper modelMapper;
         private final AdminService adminService;
@@ -47,7 +40,6 @@ public class DataController {
 
 
 
-        @ResponseBody
         @PostMapping("/add/shop")
         public Map<String, String> performShop(@RequestBody @Valid ShopDTO shopDTO, BindingResult bindingResult) {
             adminService.doAdminStuff();
@@ -64,7 +56,6 @@ public class DataController {
             return Map.of("message","успех!");
 
         }
-    @ResponseBody
     @RequestMapping(value = "/shop/{shop_id}/product", method = RequestMethod.POST)
     public Map<String, String> performProduct(@RequestBody @Valid ProductDTO productDTO, @PathVariable(value = "shop_id") Long shop_id, BindingResult bindingResult) {
         adminService.doAdminStuff();
@@ -84,14 +75,6 @@ public class DataController {
         return Map.of("message","успех!");
 
     }
-
-        @Bean
-        public ViewResolver getViewResolver() {
-            InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-            resolver.setPrefix("templates/");
-            resolver.setSuffix(".html");
-            return resolver;
-        }
     public Shop convertToShop(ShopDTO shopDTO) {
         return this.modelMapper.map(shopDTO, Shop.class);
     }

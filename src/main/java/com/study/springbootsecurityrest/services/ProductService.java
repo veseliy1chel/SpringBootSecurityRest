@@ -1,9 +1,7 @@
 package com.study.springbootsecurityrest.services;
 
 import com.study.springbootsecurityrest.models.Product;
-import com.study.springbootsecurityrest.models.Shop;
 import com.study.springbootsecurityrest.repositories.ProductRepository;
-import com.study.springbootsecurityrest.security.ShopDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
