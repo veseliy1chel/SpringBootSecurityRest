@@ -25,11 +25,10 @@ Project is created with:
 To run this project(WARNING db up in docker-compose,so without docker app doesn`t work.
 For update jar file of app we have instruction)
  ### install it locally using cmd:
-1. Go to folder Docker: `cd \src\main\Docker`
-2. `docker build -t security-rest-docker.jar .`
-3. `docker compose up`
-4. If want to stop,using: `docker compose down`
+1. `docker build -t security-rest-docker.jar .`
+2. `docker compose up`
+3. If want to stop,using: `docker compose down`
  ### for update jar file of app:
 1. cmd in folder SpringBootSecurityRest: `./mvnw clear install -DskipTests`
-2. in folder target copy  `SpringSecurityApp-0.0.1-SNAPSHOT.jar` and paste with overwriting in Docker folder
+2. in folder target copy  `SpringSecurityApp-0.0.1-SNAPSHOT.jar` and paste with overwriting in root folder
 
